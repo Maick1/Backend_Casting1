@@ -1,0 +1,78 @@
+
+body {
+    background-color: #ffffff;
+    font-family: Georgia, serif;
+}
+
+.container {
+    text-align: center;
+    margin-top: 30px;
+    color: #000000;
+}
+
+.card {
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.form-control {
+    background-color: #f1f5f9;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0D6EFD;
+}
+
+.btn-primary {
+    background-color: #0D6EFD;
+    border-color: #0D6EFD;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Agregado el estilo para el navbar fijo en la parte superior */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.btn-primary {
+    background-color: #0D6EFD;
+    border-color: #0D6EFD;
+    border-radius: 10px;
+    padding: 8px ;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

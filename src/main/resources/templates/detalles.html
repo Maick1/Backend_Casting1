@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles del Usuario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/detalle.css" th:href="@{/css/detalle.css}">
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar .navbar-brand,
+    .navbar .navbar-collapse {
+      flex: 1;
+      text-align: center;
+    }
+
+    .navbar .navbar-collapse {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+<!-- ESTILOS BOOTSTRAP, NAVBAR, CABECERA -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/menu">Detallle Postulante</a>
+  <div class="navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Volver</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <h1>Datos del Participante</h1>
+  <table>
+    <tr>
+      <th>Fecha Ingreso</th>
+      <td th:text="${formulario.fechaIngreso}"></td>
+    </tr>
+    <tr>
+      <th>N°</th>
+      <td th:text="${formulario.id}"></td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <td th:if="${formulario != null}" th:text="${formulario.nombre}"></td>
+    </tr>
+    <tr>
+      <th>Apellido</th>
+      <td th:text="${formulario.apellido}"></td>
+    </tr>
+    <tr>
+      <th>Cedula</th>
+      <td th:text="${formulario.cedula}"></td>
+    </tr>
+    <tr>
+      <th>Correo</th>
+      <td th:text="${formulario.correo}"></td>
+    </tr>
+    <tr>
+      <th>Celular</th>
+      <td th:text="${formulario.celuar}"></td>
+    </tr>
+    <tr>
+      <th>Sexo</th>
+      <td th:text="${formulario.sexo}"></td>
+    </tr>
+    <tr>
+      <th>Fecha de nacimiento</th>
+      <td th:text="${formulario.f_nacimiento}"></td>
+    </tr>
+    <tr>
+      <th>Estatura</th>
+      <td th:text="${formulario.estatura}"></td>
+    </tr>
+
+    <tr>
+      <th>Foto</th>
+      <td>
+        <img class="rounded" style="max-width: 30%;" th:src="@{'/recursos/' + ${formulario.foto}}" />
+      </td>
+    </tr>
+
+    <tr>
+      <th>Menor de edad</th>
+      <td th:text="${formulario.m_edad}"></td>
+    </tr>
+    <tr th:if="${formulario.m_edad == 'Si'}">
+      <th>Nombre del Tutor</th>
+      <td th:text="${formulario.n_tutor}"></td>
+    </tr>
+    <tr th:if="${formulario.m_edad == 'Si'}">
+      <th>Celular del Tutor</th>
+      <td th:text="${formulario.c_tutor}"></td>
+    </tr>
+    <tr>
+      <th>Posee Manager</th>
+      <td th:text="${formulario.p_manager}"></td>
+    </tr>
+    <tr th:if="${formulario.p_manager == 'Si'}">
+      <th>Nombre del Manager</th>
+      <td th:text="${formulario.no_manager}"></td>
+    </tr>
+    <tr th:if="${formulario.p_manager == 'Si'}">
+      <th>Celular del Manager</th>
+      <td th:text="${formulario.cel_manager}"></td>
+    </tr>
+    <tr>
+      <th>Talla de ropa</th>
+      <td th:text="${formulario.talla}"></td>
+    </tr>
+    <tr>
+      <th>Color de piel</th>
+      <td th:text="${formulario.c_piel}"></td>
+    </tr>
+    <tr>
+      <th>Color de ojos</th>
+      <td th:text="${formulario.c_ojos}"></td>
+    </tr>
+    <tr>
+      <th>Color de cabello</th>
+      <td th:text="${formulario.c_cabello}"></td>
+    </tr>
+    <tr>
+      <th>Tipos de alergias</th>
+      <td th:text="${formulario.alergia}"></td>
+    </tr>
+    <tr>
+      <th>Comerciales realizados</th>
+      <td th:text="${formulario.comerciales}"></td>
+    </tr>
+    <tr>
+      <th>Hobbies</th>
+      <td th:text="${formulario.hobbie}"></td>
+    </tr>
+    <tr>
+      <th>Deportes</th>
+      <td th:text="${formulario.deporte}"></td>
+    </tr>
+    <tr>
+      <th>Tipo de vehículo que maneja</th>
+      <td th:text="${formulario.vehiculo}"></td>
+    </tr>
+    <tr>
+      <th>Tipo de licencia</th>
+      <td th:text="${formulario.licencia}"></td>
+    </tr>
+  </table>
+
+  <div class="btn-container">
+    <a id="generatePDFButton" th:href="@{/exportarPDF/{id}(id=${formulario.id})}" class="btn btn-primary">Generar PDF</a>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- ... Other HTML code ... -->
+
+<script th:inline="javascript">
+  // Add an event listener to the "Generar PDF" button
+  document.getElementById("generatePDFButton").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default click behavior of the anchor tag
+    showGeneratePDFAlert(); // Show the alert before generating the PDF
+  });
+
+  // Función para mostrar la alerta de generación de PDF
+  function showGeneratePDFAlert() {
+    Swal.fire({
+      title: '¿Generar PDF?',
+      text: '¿Estás seguro de que deseas generar el PDF?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to the PDF generation URL
+        window.location.href = /*[[ @{/exportarPDF/{id}(id=${formulario.id})} ]]*/ '';
+      }
+    });
+  }
+</script>
+</body>
+</html>

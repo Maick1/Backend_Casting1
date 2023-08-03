@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .card {
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      background-color: #fff;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 15px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-info {
+      margin-bottom: 20px;
+    }
+
+    .card-info p {
+      margin: 0;
+      padding: 5px 0;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .card-info p span {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .card-rating {
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .card-rating h5 {
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .card-rating p {
+      margin: 0;
+      padding: 5px 0;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .card-rating p span {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .participant-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .participant-info i {
+      margin-right: 5px;
+      font-size: 18px;
+    }
+
+    .star-rating {
+      display: flex;
+      align-items: center;
+    }
+
+    .star-rating i {
+      color: #FFD700;
+      font-size: 18px;
+    }
+
+    /* Estilo para el título de la página */
+    .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo para los botones de acción */
+    .action-btn {
+      margin-right: 10px;
+    }
+
+    /* Estilo para la tabla de castings */
+    .table-container {
+      margin-top: 30px;
+    }
+
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-container table th,
+    .table-container table td {
+      padding: 10px;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .table-container table th {
+      text-align: left;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .table-container table td {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/menu">Ranking</a>
+  <div class="navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="btn btn-secondary action-btn" href="/menu"><i class="fas fa-arrow-left"></i> Volver</a>
+        <!-- Agrega aquí más botones de acción si es necesario -->
+      </li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<div class="container">
+  <div class="page-title">Castings Calificados</div>
+  <div class="list-group">
+    <div class="list-group-item list-group-item-action flex-column align-items-start card" th:each="casting : ${castings}">
+      <div class="card-header">
+        <h2 th:text="${casting.nomCasting}"></h2>
+      </div>
+      <div class="card-body">
+        <p th:text="${casting.descripcion}"></p>
+        <div class="card-info">
+          <p><span>Costo:</span> <span th:text="${casting.costo}"></span></p>
+          <div class="participant-info">
+            <div>
+              <i class="far fa-user"></i>
+              <span>Participante:</span>
+              <span th:text="${casting.participantes}"></span>
+            </div>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <span>Calificación:</span>
+              <span th:text="${casting.participantesCalificacion}"></span>
+            </div>
+          </div>
+          <div class="participant-info">
+            <div>
+              <i class="far fa-user"></i>
+              <span>Secundario:</span>
+              <span th:text="${casting.secundario}"></span>
+            </div>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <span>Calificación:</span>
+              <span th:text="${casting.secundarioCalificacion}"></span>
+            </div>
+          </div>
+          <div class="participant-info">
+            <div>
+              <i class="far fa-user"></i>
+              <span>Extra 1:</span>
+              <span th:text="${casting.extra1}"></span>
+            </div>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <span>Calificación:</span>
+              <span th:text="${casting.extra1Calificacion}"></span>
+            </div>
+          </div>
+          <div class="participant-info">
+            <div>
+              <i class="far fa-user"></i>
+              <span>Extra 2:</span>
+              <span th:text="${casting.extra2}"></span>
+            </div>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <span>Calificación:</span>
+              <span th:text="${casting.extra2Calificacion}"></span>
+            </div>
+          </div>
+          <div class="participant-info">
+            <div>
+              <i class="far fa-user"></i>
+              <span>Extra 3:</span>
+              <span th:text="${casting.extra3}"></span>
+            </div>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <span>Calificación:</span>
+              <span th:text="${casting.extra3Calificacion}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-rating">
+        <h5>Calificaciones Totales</h5>
+        <div class="star-rating">
+          <i class="fas fa-trophy"></i>
+          <span>Total:</span>
+          <span th:text="${casting.participantesCalificacion + casting.secundarioCalificacion + casting.extra1Calificacion + casting.extra2Calificacion + casting.extra3Calificacion}"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link href="static/css/index.css" rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <div class="col-12 user-img">
+                <img src="static/img/user.png" th:src="@{/img/user.png}"/>
+            </div>
+            <form class="col-12" method="post" th:action="@{/login}">
+                <div class="form-group" id="user-group">
+                    <input class="form-control" name="username" placeholder="Nombre de usuario" type="text"/>
+                </div>
+                <div class="form-group" id="contrasena-group">
+                    <input class="form-control" name="password" placeholder="Contraseña" type="password"/>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+            </form>
+            <div class="col-12 forgot">
+                <a th:href="@{/usuarios/restablecer_contraseña}" id="changePasswordLink">Olvidaste la Contraseña?</a>
+            </div>
+
+
+
+
+            <!-- Alerta de inicio de sesión exitoso -->
+            <div class="alert" style="display: none;" th:if="${param.loginSuccess}"></div>
+
+            <!-- Alerta de error en inicio de sesión -->
+            <div class="alert" style="display: none;" th:if="${param.error}"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para mostrar las alertas de SweetAlert2 -->
+<script th:inline="javascript">
+    // Función para mostrar la alerta de inicio de sesión exitoso
+    function showLoginSuccessAlert() {
+        Swal.fire({
+            title: '¡Inicio de sesión exitoso!',
+            text: 'Has iniciado sesión correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+
+    // Función para mostrar la alerta de error en inicio de sesión
+    function showErrorAlert() {
+        Swal.fire({
+            title: 'Error',
+            text: 'Usuario o contraseña inválidos.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+
+    // Verificar si existen los parámetros y mostrar las alertas
+    $(document).ready(function () {
+        var loginSuccess = /*[[${param.loginSuccess}]]*/ false;
+        var error = /*[[${param.error}]]*/ false;
+
+        if (loginSuccess) {
+            showLoginSuccessAlert();
+        }
+
+        if (error) {
+            showErrorAlert();
+        }
+    });
+</script>
+<!-- Add the following script to the head section of your HTML -->
+</body>
+</html>

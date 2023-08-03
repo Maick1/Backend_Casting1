@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calificar Participantes del Casting</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f5f5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 5% auto 0;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1, h3 {
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group p {
+            color: #555;
+            font-size: 1.2rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            margin-top: .5rem;
+        }
+
+        .form-group output {
+            font-weight: bold;
+            margin-left: 1rem;
+            color: #333;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #0056b3;
+        }
+    </style>
+    <!-- ... -->
+</head>
+<body>
+<!-- ... -->
+<div class="container">
+    <h1 class="my-3">Calificación de Participantes del Casting</h1>
+    <h3 th:text="'Casting: ' + ${casting.nomCasting}"></h3>
+    <p th:text="${casting.descripcion}"></p>
+    <form th:action="@{/casting/calificar/{id}(id=${casting.id})}" method="post" th:object="${casting}">
+        <div class="form-group">
+            <label for="participantesCalificacion">Calificación de participantes:</label>
+            <p th:text="${casting.participantes}"></p>
+            <input id="participantesCalificacion" name="participantesCalificacion" type="range" min="1" max="5"
+                   th:field="*{participantesCalificacion}" oninput="participantesOutput.value = this.value">
+            <output name="participantesOutput" id="participantesOutput">1</output>
+        </div>
+        <div class="form-group">
+            <label for="secundarioCalificacion">Calificación de secundario:</label>
+            <p th:text="${casting.secundario}"></p>
+            <input id="secundarioCalificacion" name="secundarioCalificacion" type="range" min="1" max="5"
+                   th:field="*{secundarioCalificacion}" oninput="secundarioOutput.value = this.value">
+            <output name="secundarioOutput" id="secundarioOutput">1</output>
+        </div>
+        <div class="form-group">
+            <label for="extra1Calificacion">Calificación de extra1:</label>
+            <p th:text="${casting.extra1}"></p>
+            <input id="extra1Calificacion" name="extra1Calificacion" type="range" min="1" max="5"
+                   th:field="*{extra1Calificacion}" oninput="extra1Output.value = this.value">
+            <output name="extra1Output" id="extra1Output">1</output>
+        </div>
+        <div class="form-group">
+            <label for="extra2Calificacion">Calificación de extra2:</label>
+            <p th:text="${casting.extra2}"></p>
+            <input id="extra2Calificacion" name="extra2Calificacion" type="range" min="1" max="5"
+                   th:field="*{extra2Calificacion}" oninput="extra2Output.value = this.value">
+            <output name="extra2Output" id="extra2Output">1</output>
+        </div>
+        <div class="form-group">
+            <label for="extra3Calificacion">Calificación de extra3:</label>
+            <p th:text="${casting.extra3}"></p>
+            <input id="extra3Calificacion" name="extra3Calificacion" type="range" min="1" max="5"
+                   th:field="*{extra3Calificacion}" oninput="extra3Output.value = this.value">
+            <output name="extra3Output" id="extra3Output">1</output>
+        </div>
+        <button type="submit" class="btn btn-primary">Calificar</button>
+    </form>
+
+</div>
+<!-- ... -->
+</body>
+</html>

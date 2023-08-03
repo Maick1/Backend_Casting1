@@ -1,0 +1,132 @@
+/* menu.css */
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.side-navbar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    overflow: auto;
+}
+
+.side-navbar .welcome-message {
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #50575d;
+}
+
+.side-navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.side-navbar ul li {
+    padding: 15px 0;
+    border-bottom: 1px solid #50575d;
+    transition: background .3s ease;
+}
+
+.side-navbar ul li:hover {
+    background: #50575d;
+}
+
+.side-navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.side-navbar ul li a span {
+    margin-left: 10px;
+}
+
+.content-area {
+    margin-left: 265px;
+    padding: 15px;
+}
+
+.zoom-img {
+    transition: transform .2s;
+}
+
+.zoom-img:hover {
+    transform: scale(1.5);
+}
+
+.navbar-brand {
+    color: #fff !important;
+}
+
+.table th {
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.btn-primary,
+.btn-light,
+.btn-danger {
+    transition: all .3s ease;
+}
+
+.btn-primary:hover,
+.btn-light:hover,
+.btn-danger:hover {
+    transform: scale(.95);
+}
+
+/* Disable the buttons when clicked */
+.btn-primary:active,
+.btn-light:active,
+.btn-danger:active {
+    opacity: 0.8;
+}
+
+.table {
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(0,0,0,.1);
+}
+
+.pagination {
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .side-navbar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content-area {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+}

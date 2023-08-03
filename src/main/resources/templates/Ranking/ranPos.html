@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rankings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Rankings de Postulantes</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Ranking</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="formulario, formularioStat : ${formularios}">
+            <th scope="row" th:text="${formularioStat.count + 1}"></th>
+            <td th:text="${formulario.nombre}"></td>
+            <td th:text="${formulario.ranking}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Castings</title>
+    <!-- CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JS de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar .navbar-brand,
+        .navbar .navbar-collapse {
+            flex: 1;
+            text-align: center;
+        }
+
+        .navbar .navbar-collapse {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/menu">Control de Casting</a>
+    <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Volver
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h1 class="my-3">Castings</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Fecha:</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="casting : ${castings}">
+            <td th:text="${casting.fechaCreacion}"></td>
+            <td th:text="${casting.nomCasting}"></td>
+            <td th:text="${casting.descripcion}"></td>
+            <td th:text="${casting.costo}"></td>
+            <td>
+                <a th:href="@{/casting/{id}(id=${casting.id})}" class="btn btn-info btn-sm"><i
+                        class="fas fa-eye"></i></a>
+                <a th:href="@{/casting/edit/{id}(id=${casting.id})}" class="btn btn-primary btn-sm"><i
+                        class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" th:onclick="'confirmDelete(event, ' + ${casting.id} + ')'"><i
+                        class="fas fa-trash"></i></a>
+                <a th:href="@{/casting/calificar/{id}(id=${casting.id})}" class="btn btn-warning btn-sm"><i class="fas fa-star"></i></a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a href="/casting/new" class="btn btn-primary">Crear nuevo casting</a>
+</div>
+</body>
+<script>
+    function confirmDelete(event, id) {
+        event.preventDefault(); // prevent the link from being followed
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/casting/delete/" + id;
+            }
+        })
+    }
+
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Cambiar Contraseña</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <style>
+    /* Estilos CSS personalizados para el formulario */
+    body {
+      background-color: #f1f1f1;
+    }
+    .modal-dialog {
+      margin-top: 5%;
+    }
+    .main-section {
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 20px;
+      box-shadow: 0px 0px 20px #999;
+    }
+    .form-control {
+      border-radius: 20px;
+    }
+    .btn {
+      border-radius: 20px;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 576px) {
+      .modal-dialog {
+        margin-top: 20%;
+      }
+      .main-section {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="modal-dialog text-center">
+  <div class="col-sm-8 main-section">
+    <div class="modal-content">
+      <div class="col-12 user-img">
+        <img src="static/img/user.png" th:src="@{/img/user.png}"/>
+      </div>
+      <!-- ... Contenido anterior del formulario ... -->
+      <form class="col-12" method="post" th:action="@{/usuarios/cambiar_contraseña}" onsubmit="return validatePassword()">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input class="form-control" name="nombreUsuario" placeholder="Nombre de usuario" type="text" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input class="form-control" name="nuevaContraseña" id="nuevaContraseña" placeholder="Nueva contraseña" type="password" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input class="form-control" name="confirmarContraseña" id="confirmarContraseña" placeholder="Confirmar contraseña" type="password" required/>
+          </div>
+        </div>
+        <!-- ... Contenido del formulario ... -->
+        <button class="btn btn-primary btn-block" type="submit">
+          <i class="fas fa-check-circle"></i> Cambiar contraseña
+        </button>
+        <!-- Botón Cancelar con ícono de Font Awesome -->
+        <a href="/" class="btn btn-danger btn-block" role="button">
+          <i class="fas fa-times"></i> Cancelar
+        </a>
+      </form>
+
+      <!-- ... Contenido posterior del formulario ... -->
+    </div>
+  </div>
+</div>
+
+<!-- Script para validar las contraseñas -->
+<script>
+  function validatePassword() {
+    var newPassword = document.getElementById('nuevaContraseña').value;
+    var confirmPassword = document.getElementById('confirmarContraseña').value;
+
+    if (newPassword !== confirmPassword) {
+      Swal.fire({
+        title: 'Las contraseñas no son iguales',
+        text: 'Por favor, inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        timer: 6000,
+
+      });
+      return false;
+    }
+
+    Swal.fire({
+      title: 'Contraseña guardada con éxito',
+      text: '',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+      timer: 6000,
+
+    });
+    return true;
+  }
+</script>
+<!-- Optional scripts -->
+</body>
+</html>
