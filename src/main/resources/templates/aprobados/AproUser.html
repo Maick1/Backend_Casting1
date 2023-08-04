@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Aprobados</title>
+    <link rel="icon" type="image/png" th:href="@{/icon/sello.png}" />
+
 
     <!-- ESTILOS BOOTSTRAP CSS -->
     <link rel="stylesheet"
@@ -43,7 +45,8 @@
         </div>
 
         <div class="form-group mx-sm-3 mb-2">
-            <input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Buscar" required>
+            <input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}"
+                   placeholder="Buscar" required>
         </div>
         <input type="submit" class="btn btn-info mb-2" value="Buscar">
         <input type="button" class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiarCampos()">
@@ -62,7 +65,8 @@
                     <h5 class="card-title" th:text="${formulario.nombre + ' ' + formulario.apellido}"></h5>
                     <p class="card-text" th:text="${formulario.celuar}"></p>
                     <p class="card-text" th:text="${formulario.fechaIngreso}"></p>
-                    <a class="btn btn-warning" th:href="@{'/contactar/' + ${formulario.id}}">Contactar <i class="fas fa-id-badge"></i></a>
+                    <a class="btn btn-warning" th:href="@{'/contactar/' + ${formulario.id}}">Contactar <i
+                            class="fas fa-id-badge"></i></a>
                     <!-- Icono de corazón (botón de "Me gusta") con animación -->
                     <a href="#" class="heart-icon animated" onclick="return false;"><i class="fas fa-heart"></i></a>
                 </div>
