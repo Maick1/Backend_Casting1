@@ -109,23 +109,7 @@
         <button type="submit" class="btn btn-primary" onclick="confirmSubmit();">Guardar</button>
     </form>
 </div>
-<script>
-    function confirmSubmit() {
-        event.preventDefault();
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "¡Vas a guardar un nuevo casting!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, guardar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('castingForm').submit();
-            }
-        });
-    }
-</script>
+<script type="text/javascript" src="static/js/newCas.js" th:src="@{/js/newCas.js}"></script>
+
 </body>
 </html>

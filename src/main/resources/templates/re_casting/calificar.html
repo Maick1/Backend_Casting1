@@ -3,84 +3,21 @@
 <head>
     <title>Calificar Participantes del Casting</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/calificar.css" th:href="@{/css/calificar.css}">
 
-    <style>
-        body {
-            background: #f5f5f5;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 5% auto 0;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        h1, h3 {
-            color: #333;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: normal;
-            margin-bottom: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .form-group p {
-            color: #555;
-            font-size: 1.2rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            margin-top: .5rem;
-        }
-
-        .form-group output {
-            font-weight: bold;
-            margin-left: 1rem;
-            color: #333;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            background: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background 0.2s ease;
-        }
-
-        button[type="submit"]:hover {
-            background: #0056b3;
-        }
-    </style>
-    <!-- ... -->
 </head>
-<body>
-<!-- ... -->
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/menu">Calificar Participantes</a>
+    <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Volver</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
 <div class="container">
     <h1 class="my-3">Calificación de Participantes del Casting</h1>
     <h3 th:text="'Casting: ' + ${casting.nomCasting}"></h3>
@@ -89,42 +26,85 @@
         <div class="form-group">
             <label for="participantesCalificacion">Calificación de participantes:</label>
             <p th:text="${casting.participantes}"></p>
-            <input id="participantesCalificacion" name="participantesCalificacion" type="range" min="1" max="5"
-                   th:field="*{participantesCalificacion}" oninput="participantesOutput.value = this.value">
-            <output name="participantesOutput" id="participantesOutput">1</output>
+            <div class="rating">
+                <input value="5" name="participantesCalificacion" id="participantes5" type="radio">
+                <label for="participantes5"></label>
+                <input value="4" name="participantesCalificacion" id="participantes4" type="radio">
+                <label for="participantes4"></label>
+                <input value="3" name="participantesCalificacion" id="participantes3" type="radio">
+                <label for="participantes3"></label>
+                <input value="2" name="participantesCalificacion" id="participantes2" type="radio">
+                <label for="participantes2"></label>
+                <input value="1" name="participantesCalificacion" id="participantes1" type="radio">
+                <label for="participantes1"></label>
+            </div>
         </div>
         <div class="form-group">
             <label for="secundarioCalificacion">Calificación de secundario:</label>
             <p th:text="${casting.secundario}"></p>
-            <input id="secundarioCalificacion" name="secundarioCalificacion" type="range" min="1" max="5"
-                   th:field="*{secundarioCalificacion}" oninput="secundarioOutput.value = this.value">
-            <output name="secundarioOutput" id="secundarioOutput">1</output>
+            <div class="rating">
+                <input value="5" name="secundarioCalificacion" id="secundario5" type="radio">
+                <label for="secundario5"></label>
+                <input value="4" name="secundarioCalificacion" id="secundario4" type="radio">
+                <label for="secundario4"></label>
+                <input value="3" name="secundarioCalificacion" id="secundario3" type="radio">
+                <label for="secundario3"></label>
+                <input value="2" name="secundarioCalificacion" id="secundario2" type="radio">
+                <label for="secundario2"></label>
+                <input value="1" name="secundarioCalificacion" id="secundario1" type="radio">
+                <label for="secundario1"></label>
+            </div>
         </div>
         <div class="form-group">
             <label for="extra1Calificacion">Calificación de extra1:</label>
             <p th:text="${casting.extra1}"></p>
-            <input id="extra1Calificacion" name="extra1Calificacion" type="range" min="1" max="5"
-                   th:field="*{extra1Calificacion}" oninput="extra1Output.value = this.value">
-            <output name="extra1Output" id="extra1Output">1</output>
+            <div class="rating">
+                <input value="5" name="extra1Calificacion" id="extra15" type="radio">
+                <label for="extra15"></label>
+                <input value="4" name="extra1Calificacion" id="extra14" type="radio">
+                <label for="extra14"></label>
+                <input value="3" name="extra1Calificacion" id="extra13" type="radio">
+                <label for="extra13"></label>
+                <input value="2" name="extra1Calificacion" id="extra12" type="radio">
+                <label for="extra12"></label>
+                <input value="1" name="extra1Calificacion" id="extra11" type="radio">
+                <label for="extra11"></label>
+            </div>
         </div>
         <div class="form-group">
             <label for="extra2Calificacion">Calificación de extra2:</label>
             <p th:text="${casting.extra2}"></p>
-            <input id="extra2Calificacion" name="extra2Calificacion" type="range" min="1" max="5"
-                   th:field="*{extra2Calificacion}" oninput="extra2Output.value = this.value">
-            <output name="extra2Output" id="extra2Output">1</output>
+            <div class="rating">
+                <input value="5" name="extra2Calificacion" id="extra25" type="radio">
+                <label for="extra25"></label>
+                <input value="4" name="extra2Calificacion" id="extra24" type="radio">
+                <label for="extra24"></label>
+                <input value="3" name="extra2Calificacion" id="extra23" type="radio">
+                <label for="extra23"></label>
+                <input value="2" name="extra2Calificacion" id="extra22" type="radio">
+                <label for="extra22"></label>
+                <input value="1" name="extra2Calificacion" id="extra21" type="radio">
+                <label for="extra21"></label>
+            </div>
         </div>
         <div class="form-group">
             <label for="extra3Calificacion">Calificación de extra3:</label>
             <p th:text="${casting.extra3}"></p>
-            <input id="extra3Calificacion" name="extra3Calificacion" type="range" min="1" max="5"
-                   th:field="*{extra3Calificacion}" oninput="extra3Output.value = this.value">
-            <output name="extra3Output" id="extra3Output">1</output>
+            <div class="rating">
+                <input value="5" name="extra3Calificacion" id="extra35" type="radio">
+                <label for="extra35"></label>
+                <input value="4" name="extra3Calificacion" id="extra34" type="radio">
+                <label for="extra34"></label>
+                <input value="3" name="extra3Calificacion" id="extra33" type="radio">
+                <label for="extra33"></label>
+                <input value="2" name="extra3Calificacion" id="extra32" type="radio">
+                <label for="extra32"></label>
+                <input value="1" name="extra3Calificacion" id="extra31" type="radio">
+                <label for="extra31"></label>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Calificar</button>
     </form>
-
 </div>
-<!-- ... -->
 </body>
 </html>

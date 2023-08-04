@@ -10,23 +10,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="static/css/editar.css" th:href="@{/css/editar.css}">
-  <style>
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-    }
 
-    .navbar .navbar-brand,
-    .navbar .navbar-collapse {
-      flex: 1;
-      text-align: center;
-    }
-
-    .navbar .navbar-collapse {
-      display: flex;
-      justify-content: center;
-    }
-  </style>
 </head>
 <body>
 <!-- ESTILOS BOOTSTRAP, NAVBAR, CABECERA -->
@@ -299,6 +283,7 @@
   </div>
 </div>
 </body>
+<script type="text/javascript" src="static/js/editFor.js" th:src="@{/js/editFor.js}"></script>
 
 <script th:inline="javascript">
   document.getElementById("poseeManager").addEventListener("change", function() {
@@ -319,30 +304,5 @@
     }
   });
 </script>
-<!-- Incluir SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<!-- ... Tu código HTML anterior ... -->
-
-<!-- Agregamos nuestro script para validar el formulario y mostrar la alerta de confirmación -->
-<script th:inline="javascript">
-  function enviarFormulario() {
-    // Validar el formulario antes de enviarlo
-    var formulario = document.getElementById("formulario");
-    if (formulario.checkValidity()) {
-      // Mostrar la alerta de confirmación
-      Swal.fire({
-        title: '¡Formulario enviado!',
-        text: 'Tu formulario se ha enviado correctamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
-        timer: 4000 // Tiempo en milisegundos (3 segundos en este ejemplo)
-      }).then(function() {
-        // Submit the form once the user clicks "Aceptar" on the SweetAlert2 alert
-        formulario.submit();
-      });
-    }
-  }
-</script>
-
-
 </html>

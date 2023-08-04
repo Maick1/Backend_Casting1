@@ -83,3 +83,20 @@ body {
 .container .table tr:nth-child(even) {
     background-color: #ddd;
 }
+
+
+ .navbar {
+     display: flex;
+     justify-content: space-between;
+ }
+
+.navbar .navbar-brand,
+.navbar .navbar-collapse {
+    flex: 1;
+    text-align: center;
+}
+
+.navbar .navbar-collapse {
+    display: flex;
+    justify-content: center;
+}
