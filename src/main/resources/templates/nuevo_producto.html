@@ -61,11 +61,6 @@
             <div class="card-body">
                 <form th:action="@{/guardar}" method="post" th:object="${formulario}" enctype="multipart/form-data">
 
-                    <div class="form-group">
-                        <label class="c-formulario__name">Fecha de Ingreso:</label>
-                        <input type="text" name="fecha_ingreso" th:field="*{fechaIngreso}" id="fechaIngreso"
-                               class="form-control" readonly>
-                    </div>
                     <div class="c-formulario__detail-box">
                         <span class="c-formulario__name">Nombres:</span>
                         <input type="text" name="nombre" th:field="*{nombre}" class="form-control"

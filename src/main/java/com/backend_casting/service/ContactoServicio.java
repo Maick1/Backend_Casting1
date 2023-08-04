@@ -47,6 +47,27 @@ public class ContactoServicio {
         }
     }
 
+    public void sendEmail2(String message, String toEmail) {
+        try {
+            MimeMessage mimeMessage = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+
+            String subject = "Notificación de recordatorio";
+
+            String body = "Tienes un nuevo recordatorio para " + message + ". Por favor, revisa tu aplicación para más detalles.";
+
+            helper.setTo(toEmail);  // para indicar a quién se enviará el correo electrónico
+            helper.setSubject(subject);  // para establecer el asunto del correo electrónico
+            helper.setText(body, true);  // para establecer el cuerpo del correo electrónico, true indica que el mensaje es HTML
+            helper.setFrom("may.vero.tesis@gmail.com");  // para establecer el correo electrónico del remitente
+
+            emailSender.send(mimeMessage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 
 
 

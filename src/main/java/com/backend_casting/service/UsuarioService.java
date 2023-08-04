@@ -34,12 +34,11 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public boolean verificarContraseña(String contraseñaRaw, String contraseñaEncoded) {
-        return passwordEncoder.matches(contraseñaRaw, contraseñaEncoded);
-    }
-
     public void cambiarContraseña(Usuario usuario, String nuevaContraseña) {
         usuario.setContraseña(passwordEncoder.encode(nuevaContraseña));
         usuarioRepository.save(usuario);
     }
+
+
+
 }
