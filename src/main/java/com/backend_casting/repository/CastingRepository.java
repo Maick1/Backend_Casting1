@@ -13,5 +13,7 @@ public interface CastingRepository extends JpaRepository<Casting, Long> {
 
     List<Casting> findByIsDeletedFalse();
     long countByIsDeletedFalse();
+    Casting findByNomCasting(String nomCasting);
+
 
 }

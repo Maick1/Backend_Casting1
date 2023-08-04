@@ -62,23 +62,25 @@ public class AppControlador {
     public String guardarFormulario(@Validated @ModelAttribute Formulario formulario, BindingResult result,
                                     Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes attributes) {
 
-
         // Valido la cedula
         if (!formularioServicio.validarCedulaEcuador(formulario.getCedula())) {
             attributes.addFlashAttribute("error", "Error: La cédula no es válida.");
             return "nuevo_producto";
         }
-//        Valido la cedula repetida no dejo ingresar
+
+        // Valido la cedula repetida no dejo ingresar
         if (result.hasErrors()) {
             model.addAttribute("formulario", formulario);
             attributes.addFlashAttribute("warning", "Error en el Formulario");
             return "nuevo_producto";
         }
 
-        if (formularioServicio.existsByCedula(formulario.getCedula())) {
+        // Comprobación modificada de la cédula
+        if (formulario.getId() == 0 && formularioServicio.existsByCedula(formulario.getCedula())) {
             attributes.addFlashAttribute("error", "Error: La cédula ya existe en el sistema.");
             return "nuevo_producto";
         }
+
 
         if (result.hasErrors()) {
             model.addAttribute("formulario", formulario);

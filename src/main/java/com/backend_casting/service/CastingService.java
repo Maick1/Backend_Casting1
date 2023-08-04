@@ -5,6 +5,7 @@ import com.backend_casting.repository.CastingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,6 +22,7 @@ public class CastingService {
     }
 
     public Casting saveCasting(Casting casting) {
+        casting.setFechaCreacion(LocalDateTime.now());
         return castingRepository.save(casting);
     }
 
@@ -45,5 +47,9 @@ public class CastingService {
 
     public List<Casting> getAllCastingsOrderedByCalificacion() {
         return castingRepository.findAllOrderByCalificacionDesc();
+    }
+//inyeccion para editar
+    public Casting getCastingByNomCasting(String nomCasting) {
+        return castingRepository.findByNomCasting(nomCasting);
     }
 }
