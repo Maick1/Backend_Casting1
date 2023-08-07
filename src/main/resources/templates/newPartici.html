@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Inscripción</title>
+    <link rel="icon" type="image/png" th:href="@{/icon/registro.png}"/>
+
+    <!-- ESTILOS BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- ESTILOS FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="static/css/nuevo.css" th:href="@{/css/nuevo.css}">
+    <link rel="stylesheet" type="text/css" href="static/cssweb/galeria.css" th:href="@{/cssweb/galeria.css}">
+
+    <link href="/cssweb/estilos.css" rel="stylesheet">
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar .navbar-brand,
+        .navbar .navbar-collapse {
+            flex: 1;
+            text-align: center;
+        }
+
+        .navbar .navbar-collapse {
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!-- ESTILOS BOOTSTRAP, NAVBAR, CABECERA -->
+<div class="barra">
+    <img src="static/imgweb/casting.png" th:src="@{/imgweb/menu.png}"/>
+
+    <br>
+    <br>
+    <br>
+    <ul>
+        <li><a th:href="@{/}"><i class="fas fa-home"></i><span>Inicio</span></a></li>
+        <li><a th:href="@{/about}"><i class="fas fa-info-circle"></i><span>Sobre Nosotros</span></a></li>
+        <li><a href="/new"><i class="fas fa-user-plus"></i><span>¿Quieres hacer Casting?</span></a></li>
+        <li><a th:href="@{/galeria}"><i class="fas fa-images"></i><span>Galeria</span></a></li>
+        <li><a th:href="@{/login}"><i class="fas fa-user-lock"></i><span>Login</span></a></li>
+    </ul>
+</div>
+
+<!-- Agrego un formulario para registrar un nuevo producto -->
+<div class="container">
+    <h1>Se Parte de Nuestra Familia</h1>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <div class="card-body">
+                <form th:action="@{/guardarP}" method="post" th:object="${formulario}" enctype="multipart/form-data">
+
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Nombres:</span>
+                        <input type="text" name="nombre" th:field="*{nombre}" class="form-control"
+                               placeholder="Ingrese el nombre" required>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Apellidos:</span>
+                        <input type="text" name="apellido" th:field="*{apellido}" class="form-control"
+                               placeholder="Ingrese el apellido" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="c-formulario__name">Cedula:</label>
+                        <input type="number" name="cedula" th:field="*{cedula}" class="form-control"
+                               placeholder="Ingrese el numero de cedula" pattern="\d{10}" required
+                               oninput="validarCedula()">
+                        <div id="cedula-error" style="display: none; color: red;">
+                            La cédula ingresada no es válida.
+                        </div>
+                    </div>
+
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Correo:</span>
+                        <input type="email" name="correo" th:field="*{correo}" class="form-control"
+                               placeholder="Ingrese el correo" required>
+                    </div>
+
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Celular:</span>
+                        <input type="number" name="celuar" th:field="*{celuar}" class="form-control"
+                               placeholder="Ingrese el numero" pattern="\d{10}">
+                        <div class="invalid-feedback">
+                            Error en el formato del celular (10 dígitos numéricos).
+                        </div>
+                    </div>
+
+
+                    <div class="c-formulario__detail-box">
+                        <label class="c-formulario__name">Sexo:</label>
+                        <select name="sexo" th:field="*{sexo}" class="form-control" required>
+                            <option value="Masculino">M</option>
+                            <option value="Femenino">F</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="c-formulario__name">Fecha de Nacimiento</label>
+                        <input type="date" name="f_nacimiento" th:field="*{f_nacimiento}" class="form-control"
+                               placeholder="Ingrese la fecha de nacimiento (1998-12-11)" required>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Estatura:</span>
+                        <input type="number" name="estatura" class="form-control"
+                               placeholder="Ingrese la estatura en metros.centímetros Ej: 1.73"
+                               pattern="\d+(\.|,)\d+"
+                               required>
+                    </div>
+                    <br>
+
+
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Ingresa una Foto:</span>
+                        <input type="file" name="file" class="form-control" accept="image/*">
+                    </div>
+                    <br>
+
+                    <!--         Imput de menor de edad-->
+                    <div class="c-formulario__detail-box">
+                        <label class="c-formulario__name">¿Eres Menor de Edad?:</label>
+                        <select name="m_edad" th:field="*{m_edad}" id="m_edad" class="form-control" required>
+                            <option value="No">No</option>
+                            <option value="Si">Si</option>
+                        </select>
+
+                        <div class="preguntas" id="tutorFields" style="display: none;">
+                            <div class="form-group">
+                                <label class="c-formulario__name">Nombre del Tutor:</label>
+                                <input type="text" id="n_tutor_" name="n_tutorr" th:field="*{n_tutor}"
+                                       class="form-control" placeholder="Ingrese el nombre del manager">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="c-formulario__name">Celular del Tutor:</label>
+                                <input type="text" id="c_tutor" name="c_tutor" th:field="*{c_tutor}"
+                                       class="form-control" placeholder="Ingrese el celular del tutor"
+                                       pattern="\d{10}">
+                                <p th:if="${#fields.hasErrors('c_tutor')}" class="alert alert-danger"
+                                   th:errors="*{c_tutor}">Error en el formato del celular del tutor (10 dígitos
+                                    numéricos)</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="c-formulario__detail-box">
+                        <label class="c-formulario__name">¿Posees Manager?:</label>
+                        <select name="poseeManager" th:field="*{p_manager}" id="poseeManager" class="form-control"
+                                required>
+                            <option value="No">No</option>
+                            <option value="Si">Si</option>
+                        </select>
+
+                        <div class="preguntas" id="preguntas" style="display: none;">
+                            <div class="form-group">
+                                <label class="c-formulario__name">Nombre de Manager:</label>
+                                <input type="text" id="no_manager" name="no_manager" th:field="*{no_manager}"
+                                       class="form-control" placeholder="Ingrese el nombre del manager">
+                            </div>
+                            <div class="form-group">
+                                <label class="c-formulario__name">Celular de Manager:</label>
+                                <input type="text" id="cel_manager" name="cel_manager" th:field="*{cel_manager}"
+                                       class="form-control" placeholder="Ingrese el celular del manager"
+                                       pattern="\d{10}">
+                                <p th:if="${#fields.hasErrors('cel_manager')}" class="alert alert-danger"
+                                   th:errors="*{cel_manager}">Error en el formato del celular del manager (10
+                                    dígitos
+                                    numéricos)</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Talla de ropa:</span>
+                        <select name="talla" th:field="*{talla}" class="form-control" required>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Color de piel:</span>
+                        <select name="c_piel" th:field="*{c_piel}" class="form-control" required>
+                            <option value="Muy clara">Muy clara</option>
+                            <option value="Clara">Clara</option>
+                            <option value="Morena clara">Morena clara</option>
+                            <option value="Morena oscura">Morena oscura</option>
+                            <option value="Oscura">Oscura</option>
+                            <option value="Muy oscura">Muy oscura</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Color de ojos:</span>
+                        <select name="c_ojos" th:field="*{c_ojos}" class="form-control" required>
+                            <option value="Verde">Verde</option>
+                            <option value="Azul">Azul</option>
+                            <option value="Miel">Miel</option>
+                            <option value="Marrón">Marrón</option>
+                            <option value="Café">Café</option>
+                            <option value="Negro">Negro</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Color de cabello:</span>
+                        <select name="c_cabello" th:field="*{c_cabello}" class="form-control" required>
+                            <option value="Negro">Negro</option>
+                            <option value="Moreno">Moreno</option>
+                            <option value="Castaño oscuro">Castaño oscuro</option>
+                            <option value="Castaño claro">Castaño claro</option>
+                            <option value="Rubio oscuro">Rubio oscuro</option>
+                            <option value="Rubio">Rubio</option>
+                            <option value="Rubio claro">Rubio claro</option>
+                            <option value="Rojo cobrizo">Rojo cobrizo</option>
+                            <option value="Ninguno">Ninguno</option>
+
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Tipos de alergias:</span>
+                        <select name="alergia" th:field="*{alergia}" class="form-control" required>
+                            <option value="Alergia a alimentos">Alergia a alimentos</option>
+                            <option value="Alergia a fármacos">Alergia a fármacos</option>
+                            <option value="Asma alérgico">Asma alérgico</option>
+                            <option value="Dermatitis atópica">Dermatitis atópica</option>
+                            <option value="Rinitis alérgica">Rinitis alérgica</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Comerciales realizados:</span>
+                        <select name="comerciales" th:field="*{comerciales}" class="form-control" required>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Hobbies:</span>
+                        <select name="hobbie" th:field="*{hobbie}" class="form-control" required>
+                            <option value="Cocinar">Cocinar</option>
+                            <option value="Pintar">Pintar</option>
+                            <option value="Leer">Leer</option>
+                            <option value="Jugar">Jugar</option>
+                            <option value="Escribir">Escribir</option>
+                            <option value="Bailar">Bailar</option>
+                            <option value="Ver películas">Ver películas</option>
+                            <option value="Coleccionar cosas">Coleccionar cosas</option>
+                            <option value="Hacer Yoga">Hacer Yoga</option>
+                            <option value="Entonar instrumento musical">Entonar instrumento musical</option>
+                            <option value="Tejer">Tejer</option>
+                            <option value="Jugar juegos de mesa">Jugar juegos de mesa</option>
+                            <option value="Hacer manualidades">Hacer manualidades</option>
+                            <option value="Hacer voluntariado">Hacer voluntariado</option>
+                            <option value="Viajar">Viajar</option>
+                            <option value="Aprender idiomas">Aprender idiomas</option>
+                            <option value="Senderismo">Senderismo</option>
+                            <option value="Dibujar">Dibujar</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Deportes:</span>
+                        <select name="deporte" th:field="*{deporte}" class="form-control" required>
+                            <option value="Atletismo">Atletismo</option>
+                            <option value="Ciclismo">Ciclismo</option>
+                            <option value="Golf">Golf</option>
+                            <option value="Natación">Natación</option>
+                            <option value="Tenis">Tenis</option>
+                            <option value="Baloncesto">Baloncesto</option>
+                            <option value="Voley">Voley</option>
+                            <option value="Fútbol">Fútbol</option>
+                            <option value="Boxeo">Boxeo</option>
+                            <option value="Ajedrez">Ajedrez</option>
+                            <option value="Gimnasia">Gimnasia</option>
+                            <option value="Karate">Karate</option>
+                            <option value="Montañismo">Montañismo</option>
+                            <option value="Paracaidismo">Paracaidismo</option>
+                            <option value="Parapente">Parapente</option>
+                            <option value="Correr">Correr</option>
+                            <option value="Patinaje">Patinaje</option>
+                            <option value="Taekwondo">Taekwondo</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Tipo de vehículo que maneja:</span>
+                        <select name="vehiculo" th:field="*{vehiculo}" class="form-control" required>
+                            <option value="Bicicleta">Bicicleta</option>
+                            <option value="Moto">Moto</option>
+                            <option value="Motoneta">Motoneta</option>
+                            <option value="Motoneta eléctrica">Motoneta eléctrica</option>
+                            <option value="Carro">Carro</option>
+                            <option value="Carro automático">Carro automático</option>
+                            <option value="Camión">Camión</option>
+                            <option value="Trailer">Trailer</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="c-formulario__detail-box">
+                        <span class="c-formulario__name">Tipo de licencia:</span>
+                        <select name="licencia" th:field="*{licencia}" class="form-control" required>
+                            <option value="Tipo A">Tipo A</option>
+                            <option value="Tipo B">Tipo B</option>
+                            <option value="Tipo C">Tipo C</option>
+                            <option value="Tipo D">Tipo D</option>
+                            <option value="Tipo E">Tipo E</option>
+                            <option value="Ninguno">Ninguno</option>
+
+                        </select>
+                    </div>
+                    <!-- Agrega los demás campos aquí -->
+
+                    <div class="c-formulario__detail-buttom">
+                        <button class="btn btn-primary" type="button" onclick="enviarFormulario()">Guardar</button>
+                        <a class="btn btn-danger" href="/inicio">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+<!-- SCRIPTS BOOTSTRAP JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<!-- Agregamos nuestro script para mostrar u ocultar campos dependiendo de la selección -->
+<script th:inline="javascript">
+    document.getElementById("poseeManager").addEventListener("change", function () {
+        var preguntasDiv = document.getElementById("preguntas");
+        if (this.value === "Si") {
+            preguntasDiv.style.display = "block";
+        } else {
+            preguntasDiv.style.display = "none";
+        }
+    });
+
+    document.getElementById("m_edad").addEventListener("change", function () {
+        var tutorFieldsDiv = document.getElementById("tutorFields");
+        if (this.value === "Si") {
+            tutorFieldsDiv.style.display = "block";
+        } else {
+            tutorFieldsDiv.style.display = "none";
+        }
+    });
+    <!-- ... Código HTML anterior ... -->
+
+    <!-- SCRIPTS BOOTSTRAP JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!-- Agregar SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- Agregamos nuestro script para mostrar u ocultar campos dependiendo de la selección -->
+
+<script type="text/javascript" src="static/js/newPar.js" th:src="@{/js/newPar.js}"></script>
+
+</html>

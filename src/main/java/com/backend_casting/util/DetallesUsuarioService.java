@@ -21,9 +21,6 @@ public class DetallesUsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
@@ -41,5 +38,4 @@ public class DetallesUsuarioService implements UserDetailsService {
                 .authorities(authorities)  // Aquí puedes definir los roles del usuario
                 .build();
     }
-
 }

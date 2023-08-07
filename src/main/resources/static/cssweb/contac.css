@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.c-contacts {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.c-contacts__title {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.c-contacts__contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.c-contacts__email,
+.c-contacts__redes,
+.c-contacts__ubi {
+    flex: 1 0 200px;
+    margin: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.c-contacts__email-img,
+.c-contacts__redes-img,
+.c-contacts__ubi-img {
+    max-width: 70px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.c-contacts__tema {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.c-contacts__context {
+    line-height: 1.5;
+}

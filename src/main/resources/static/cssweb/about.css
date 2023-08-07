@@ -1,0 +1,98 @@
+:root {
+    --primary-color: #3c404a;
+    --secondary-color: #fafafa;
+    --accent-color: #f25f5c;
+    --border-radius: 10px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --transition-time: 0.3s;
+    --font-family: 'Lato', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    line-height: 1.7;
+}
+
+.c-about {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+}
+
+.o-text-lg {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.o-text-xs-semi-bold {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.c-about__card-user-image {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    width: 100%;
+}
+
+.card {
+    position: relative;
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-time), box-shadow var(--transition-time);
+    color: var(--primary-color);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transition: background-color var(--transition-time), border-color var(--transition-time);
+    border-radius: 8px;
+    color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background-color: #e05656;
+    border-color: #e05656;
+    color: var(--secondary-color);
+}
+
+.card::before,
+.card::after {
+    transition: all 0.4s ease-out;
+}
+
+.heading {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.card p:not(.heading) {
+    font-size: 15px;
+}
+
+.card p:last-child {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .c-about {
+        padding: 20px;
+    }
+    .o-text-lg {
+        font-size: 2em;
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/cssweb/about.css" rel="stylesheet">
+    <link href="/cssweb/estilos.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- ESTILOS BOOTSTRAP CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>Sobre Nosotros</title>
+    <link rel="icon" type="image/png" th:href="@{/img/grupo.png}" />
+
+</head>
+<div class="barra">
+    <img src="static/imgweb/casting.png" th:src="@{/imgweb/menu.png}"/>
+    <br>
+    <br>
+    <br>
+    <ul>
+        <li><a th:href="@{/}"><i class="fas fa-home"></i><span>Inicio</span></a></li>
+        <li><a th:href="@{/galeria}"><i class="fas fa-images"></i><span>Galeria</span></a></li>
+        <li><a href="/new"><i class="fas fa-user-plus"></i><span>¿Quieres hacer Casting?</span></a></li>
+        <li><a th:href="@{/contactarnos}"><i class="fas fa-envelope"></i><span>Contactanos</span></a></li>
+        <li><a th:href="@{/login}"><i class="fas fa-user-lock"></i><span>Login</span></a></li>
+
+    </ul>
+</div>
+
+<body>
+<div class="c-about container py-5" id="About">
+    <h1 class="c-about__title o-text-lg mb-4 text-center">Sobre nosotros</h1>
+    <div class="c-about__descriptions mb-5">
+        <p class="c-about__description o-text-xs-semi-bold mb-3">
+            Somos una agencia especializada en la dirección de casting, talentos y figuración para producciones
+            audiovisuales.
+            Nos adaptamos a tu proyecto para dar respuesta a tus
+            necesidades, plazos y presupuestos.
+            Nuestro logotipo es nuestro activo de marca más
+            valioso e importante, es por eso que nuestro logo esta representado
+            por una empresa de diseño.</p>
+        <p class="c-about__description o-text-xs-semi-bold">
+            ShowsUNEMI ha estado funcionando desde 2008 y se ha convertido en un confiable socio en la producción de
+            cine y
+            TVC.
+            Ofrecemos sólo cuidadosamente seleccionados actores preferentemente con experiencia en cine, teatro o
+            televisión.
+            De acuerdo con la tarea, podemos proporcionarle rápidamente una celebridad o un adolescente inteligente en
+            la
+            calle. </p>
+    </div>
+    <h2 class="mb-4 text-center">Nuestro Equipo</h2>
+    <div class="c-about__card-users d-flex justify-content-center">
+        <div class="c-about__card-user card mr-3" style="width: 18rem;">
+            <img src="static/imgweb/casting.png" th:src="@{/imgweb/user01.jpeg}" alt="Erika Villamar" class="card-img-top c-about__card-user-image">
+
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title c-about__card-user-nameE">Erika Villamar</h5>
+                    <p class="card-text c-about__card-user-chargedE">Jefa de Casting</p>
+                    <a href="#" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="c-about__card-user card" style="width: 18rem;">
+            <img src="static/imgweb/casting.png" th:src="@{/imgweb/user02.jpeg}"  alt="Herbert Shuldt" class="card-img-top c-about__card-user-image">
+
+            <div class="card">
+
+                <div class="card-body text-center">
+                    <h5 class="card-title c-about__card-user-nameH">Herbert Shuldt</h5>
+                    <p class="card-text c-about__card-user-chargedH">Asistente de Casting</p>
+                    <a href="#" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script de Bootstrap (opcional, para efectos como modales) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

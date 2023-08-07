@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    background-image:
+            url('/imgweb/logo.png'),
+            url('/imgweb/casting.png');
+    /* Este es el segundo fondo, que estará debajo del primero */
+    background-size: 
+        1100px,  /* Tamaño de logo.png, ajústalo según tus necesidades */
+        cover;  /* Tamaño de casting.png */
+    background-position: 
+        center, /* Posición de logo.png, centrado horizontal y verticalmente */
+        center; /* Posición de casting.png, centrado horizontal y verticalmente */
+    background-repeat: no-repeat;  /* Evita que las imágenes se repitan */
+    background-attachment: fixed;
+    color: #fff;
+}
+
+
+.barra {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.9); /* Fondo oscuro */
+    overflow-y: auto;
+    transition: width 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+
+.barra ul {
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.barra li {
+    transition: background-color 0.5s;
+    margin: 15px 0;
+}
+
+.barra a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    color: #aaa;
+    transition: color 0.5s;
+    font-size: 0;
+}
+
+.barra h2 {
+    text-align: center;
+    color: #ddd;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 0;
+    transition: font-size 0.5s ease-in-out;
+}
+
+.barra img {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+}
+
+.barra:hover {
+    width: 250px;
+}
+
+.barra:hover ul {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.barra:hover h2 {
+    font-size: 24px;
+}
+
+.barra:hover a {
+    font-size: 16px;
+}
+
+.barra li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.barra a:hover {
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    .barra:hover {
+        width: 300px;
+    }
+}

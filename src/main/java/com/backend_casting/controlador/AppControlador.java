@@ -44,11 +44,33 @@ public class AppControlador {
         this.formularioServicio = formularioServicio;
     }
 
+    @GetMapping({"/", "/inicio"})
+    public String inicio() {
+        return "htmlweb/indexWeb";
+
+    }
+
     //  maneja las solicitudes GET a las rutas "/" y "/login". Simplemente devuelve la vista "index".
-    @GetMapping({"/", "/login"})
+    @GetMapping("/login")
     public String index() {
         return "index";
     }
+
+    @GetMapping({"/about"})
+    public String about() {
+        return "htmlweb/About";
+    }
+
+    @GetMapping({"/galeria"})
+    public String galeria() {
+        return "htmlweb/slider";
+    }
+
+    @GetMapping({"/contactarnos"})
+    public String contactarnos() {
+        return "htmlweb/contacto";
+    }
+
 
     //    Crea un nuevo objeto Formulario, lo añade al modelo y devuelve la vista "nuevo_producto".
     @GetMapping("/nuevo")
@@ -59,8 +81,7 @@ public class AppControlador {
     }
 
     @PostMapping("/guardar")
-    public String guardarFormulario(@Validated @ModelAttribute Formulario formulario, BindingResult result,
-                                    Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes attributes) {
+    public String guardarFormulario(@Validated @ModelAttribute Formulario formulario, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes attributes) {
 
         // Valido la cedula
         if (!formularioServicio.validarCedulaEcuador(formulario.getCedula())) {
@@ -111,6 +132,69 @@ public class AppControlador {
         return "redirect:/menu";
     }
 
+
+//    Guardar formulario de participante de la pagina web
+
+    @GetMapping("/new")
+    public String mostrarParticipante(Model model) {
+        Formulario formulario = new Formulario();
+        model.addAttribute("formulario", formulario);
+        return "newPartici";
+    }
+    @PostMapping("/guardarP")
+    public String guardarFormularioparticipante(@Validated @ModelAttribute Formulario formulario, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes attributes) {
+
+        // Valido la cedula
+        if (!formularioServicio.validarCedulaEcuador(formulario.getCedula())) {
+            attributes.addFlashAttribute("error", "Error: La cédula no es válida.");
+            return "newPartici";
+        }
+
+        // Valido la cedula repetida no dejo ingresar
+        if (result.hasErrors()) {
+            model.addAttribute("formulario", formulario);
+            attributes.addFlashAttribute("warning", "Error en el Formulario");
+            return "newPartici";
+        }
+
+        // Comprobación modificada de la cédula
+        if (formulario.getId() == 0 && formularioServicio.existsByCedula(formulario.getCedula())) {
+            attributes.addFlashAttribute("error", "Error: La cédula ya existe en el sistema.");
+            return "newPartici";
+        }
+
+
+        if (result.hasErrors()) {
+            model.addAttribute("formulario", formulario);
+            attributes.addFlashAttribute("warning", "Error en el Formulario");
+            return "newPartici";
+        }
+//Valido si ocurre errores al subir la foto
+        try {
+            if (!foto.isEmpty()) {
+                // Path directorioImagenes = Paths.get("src//main//resources//static/img");
+                String rutaAbsoluta = "C://Participantes//recursos";
+
+                byte[] bytesImg = foto.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + foto.getOriginalFilename());
+                Files.write(rutaCompleta, bytesImg);
+
+                formulario.setFoto(foto.getOriginalFilename());
+            }
+//Guardo exitosamente el formulario
+            formularioServicio.save(formulario);
+            attributes.addFlashAttribute("success", "Formulario guardado exitosamente");
+        } catch (IOException e) {
+            logger.error("Error al guardar el formulario", e);
+            attributes.addFlashAttribute("error", "Error al guardar el formulario: " + e.getMessage());
+            return "newPartici";
+        }
+
+        return "htmlweb/indexWeb";
+    }
+
+//    Controlador para editar el formulario
+
     @GetMapping("/editar/{id}")
     public ModelAndView mostrarFormularioDeEditarFormulario(@PathVariable(name = "id") Long id, RedirectAttributes attributes) {
         ModelAndView modelo = new ModelAndView("EditarFormulario");
@@ -127,6 +211,7 @@ public class AppControlador {
         return modelo;
     }
 
+    //    Controlador para mostrar los detalles del formulario
     @GetMapping("/detalle/{id}")
     public String mostrarDetallesFormulario(@PathVariable("id") Long id, Model model, RedirectAttributes attributes) {
         try {
@@ -186,8 +271,7 @@ public class AppControlador {
 
     //    Controladdor para listar los usuarios
     @GetMapping("/menu")
-    public String menu(Model model, @Param("palabraClave") String palabraClave,
-                       @RequestParam(defaultValue = "0") int page) {
+    public String menu(Model model, @Param("palabraClave") String palabraClave, @RequestParam(defaultValue = "0") int page) {
         PageRequest pageable = PageRequest.of(page, 5, Sort.by("nombre").ascending());
         Page<Formulario> listaFormularios = formularioServicio.listAll(palabraClave, pageable);
         model.addAttribute("listaFormularios", listaFormularios);
@@ -198,8 +282,7 @@ public class AppControlador {
 
     // Controlador para clasificcar mostrar lista
     @GetMapping("/clasificar")
-    public String aprobados(Model model, @Param("palabraClave") String palabraClave,
-                            @RequestParam(defaultValue = "0") int page) {
+    public String aprobados(Model model, @Param("palabraClave") String palabraClave, @RequestParam(defaultValue = "0") int page) {
         PageRequest pageable = PageRequest.of(page, 6, Sort.by("nombre").ascending());
         Page<Formulario> listaFormularios = formularioServicio.listAll(palabraClave, pageable);
         model.addAttribute("listaFormularios", listaFormularios);
@@ -207,7 +290,8 @@ public class AppControlador {
         model.addAttribute("currentPage", page);
         return "aprobados/AproUser";
     }
-// verifica la respuesta. Si data.exists es verdadero,
+
+    // verifica la respuesta. Si data.exists es verdadero,
 // se muestra una alerta de error y se detiene la ejecución
 // de la función. Si data.exists es falso, se procede a enviar
 // el formulario.

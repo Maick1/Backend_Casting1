@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="static/cssweb/galeria.css" th:href="@{/cssweb/contac.css}">
+
+    <title>Contactar</title>
+    <link rel="icon" type="image/png" th:href="@{/img/comunicar.png}"/>
+
+</head>
+<body>
+<ul>
+    <li><a th:href="@{/}"><i class="fas fa-home"></i><span>Inicio</span></a></li>
+    <li><a th:href="@{/about}"><i class="fas fa-info-circle"></i><span>Sobre Nosotros</span></a></li>
+    <li><a href="/new"><i class="fas fa-user-plus"></i><span>¿Quieres hacer Casting?</span></a></li>
+    <li><a th:href="@{/galeria}"><i class="fas fa-images"></i><span>Galeria</span></a></li>
+    <li><a th:href="@{/login}"><i class="fas fa-user-lock"></i><span>Login</span></a></li>
+</ul>
+
+<div class="c-contacts" id="Contact">
+    <span class="c-contacts__title o-text-lg">Contáctenos</span>
+    <div class="container text-center">
+        <div class="c-contacts__contact row align-items-start">
+
+            <div class="c-contacts__email col-md-4">
+                <img src="static/imgweb/email.png" th:src="@{/imgweb/email.png}"/>
+
+                <p class="c-contacts__tema">Correo electrónico</p>
+                <p class="c-contacts__context">showunemmi@gmail.com</p>
+            </div>
+
+            <div class="c-contacts__redes col-md-4">
+                <img src="static/imgweb/face1.pn" th:src="@{/imgweb/face1.png}"/>
+
+                <p class="c-contacts__tema"> Redes Sociales</p>
+
+                <li class="c-contacts__context"> Facebook: ShowUnemi</li>
+                <li class="c-contacts__context">Instagram: @show-unemi</li>
+
+            </div>
+
+            <div class="c-contacts__ubi col-md-4">
+                <img src="static/imgweb/ubi.png" th:src="@{/imgweb/ubi.png}"/>
+
+                <p class="c-contacts__tema">Ubicación</p>
+                <p class="c-contacts__context">Milagro, Cdla. Bellavista</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
