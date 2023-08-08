@@ -6,6 +6,7 @@ import com.backend_casting.entity.Formulario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 
 
 public interface FormularioRepositorio extends JpaRepository<Formulario, Long> {
@@ -27,5 +28,7 @@ public interface FormularioRepositorio extends JpaRepository<Formulario, Long> {
     public boolean existsByCedula(String cedula);
 
     Page<Formulario> findByIsDeletedFalse(Pageable pageable);
+
+    List<String> findByNombreStartingWith(String term);
 
 }

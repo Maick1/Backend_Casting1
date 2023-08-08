@@ -117,4 +117,9 @@ public class FormularioServicio {
 
         return total == ultimoDigito;
     }
+
+    public List<String> findNombresStartingWith(String term) {
+        return formularioRepository.findByNombreStartingWith(term);
+    }
+
 }

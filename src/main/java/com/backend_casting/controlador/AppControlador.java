@@ -294,5 +294,12 @@ public class AppControlador {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/autocomplete/nombres")
+    public ResponseEntity<List<String>> autocompleteNombres(@RequestParam String term) {
+        List<String> nombres = formularioServicio.findNombresStartingWith(term);
+        return ResponseEntity.ok(nombres);
+    }
+
+
 
 }
