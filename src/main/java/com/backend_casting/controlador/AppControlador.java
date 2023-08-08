@@ -56,15 +56,6 @@ public class AppControlador {
         return "index";
     }
 
-    @GetMapping({"/about"})
-    public String about() {
-        return "htmlweb/About";
-    }
-
-    @GetMapping({"/galeria"})
-    public String galeria() {
-        return "htmlweb/slider";
-    }
 
     @GetMapping({"/contactarnos"})
     public String contactarnos() {

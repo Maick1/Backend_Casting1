@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    background-image:
+            url('/imgweb/logo.png'),
+            url('/imgweb/casting.png');
+    /* Este es el segundo fondo, que estará debajo del primero */
+    background-size:
+            700px,  /* Tamaño de logo.png, ajústalo según tus necesidades */
+            cover;  /* Tamaño de casting.png */
+    background-position:
+            center, /* Posición de logo.png, centrado horizontal y verticalmente */
+            center; /* Posición de casting.png, centrado horizontal y verticalmente */
+    background-repeat: no-repeat;  /* Evita que las imágenes se repitan */
+    background-attachment: fixed;
+    color: #fff;
+}
+.item .image img {
+    width: 300px;  /* Ajusta según el ancho deseado */
+    height: 350px; /* Ajusta según la altura deseada */
+    object-fit: cover; /* Esto hará que la imagen cubra el espacio definido sin deformarse */
+}
+.text-content {
+    font-family: 'Arial', sans-serif; /* Usa una fuente sans-serif; considera usar una fuente personalizada si la tienes disponible */
+    color: #000000; /* Color de texto oscuro para una buena legibilidad */
+    line-height: 1.6; /* Espaciado entre líneas */
+    max-width: 700px; /* Limita el ancho para una lectura cómoda */
+    margin: 0 auto; /* Centra el contenido si su contenedor es más grande que el max-width */
+    padding: 20px; /* Espacio interior para separar el contenido de los bordes */
+}
+
+.text-content h4 {
+    font-size: 24px; /* Tamaño de fuente más grande para el encabezado */
+    margin-bottom: 10px; /* Espacio debajo del encabezado */
+    color: #2c3e50; /* Un tono azul oscuro para el encabezado */
+}
+
+.text-content span {
+    display: block; /* Hace que el span ocupe toda la línea, como un bloque */
+    font-size: 18px; /* Tamaño de fuente para el subencabezado/span */
+    margin-bottom: 15px; /* Espacio debajo del subencabezado/span */
+    color: #e74c3c; /* Un tono rojo para el subencabezado/span */
+}
+
+.text-content p {
+    font-size: 16px; /* Tamaño de fuente del párrafo */
+}
+p {
+    font-family: 'Arial', sans-serif; /* Usa una fuente sans-serif; considera usar Google Fonts u otra fuente personalizada */
+    font-size: 18px; /* Tamaño de fuente */
+    color: #000000; /* Color de texto oscuro para una buena legibilidad */
+    line-height: 1.7; /* Espaciado entre líneas para mejorar la legibilidad */
+    margin: 0 0 20px; /* Espacio debajo del párrafo */
+    text-align: justify; /* Alinea el texto justificado */
+    max-width: 800px; /* Ancho máximo para el párrafo */
+    margin: 0 auto; /* Centra el párrafo si su contenedor es más grande que el max-width */
+}
+
+p br {
+    margin-bottom: 10px; /* Proporciona espacio extra después del salto de línea */
+    display: block; /* Hace que el salto de línea actúe como un bloque */
+    color: #000000; /* Color de texto oscuro para una buena legibilidad */
+
+}
+#contact-content .section-heading h1 {
+     font-size: 2.5em; /* Aumenta el tamaño del texto */
+     font-weight: bold; /* Establece el texto en negrita */
+ }
+
+#contact-content .section-heading p {
+    font-size: 1.2em; /* Aumenta el tamaño del texto */
+    font-weight: bold; /* Establece el texto en negrita */
+}
+
+#contact-content .section-heading em {
+    font-style: normal; /* Para que "ShowUnemi" no esté en itálica */
+    font-weight: bold; /* Establece el texto en negrita */
+}
+
+
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+    background: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px;
+    display: none;
+    transition: opacity 0.3s ease-out;
+    opacity: 0.7;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+}

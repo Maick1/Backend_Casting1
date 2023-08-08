@@ -305,6 +305,22 @@
       tutorFieldsDiv.style.display = "none";
     }
   });
+  document.addEventListener("DOMContentLoaded", function() {
+    // Obtener el campo de fecha
+    var fechaInput = document.querySelector('input[name="f_nacimiento"]');
+
+    // Verificar que tiene un valor
+    if(fechaInput.value) {
+      console.log("La fecha se ha cargado correctamente:", fechaInput.value);
+    } else {
+      console.warn("El campo de fecha está vacío. Verifica que el backend esté enviando un valor.");
+    }
+
+    // Si estás usando un datepicker o alguna otra herramienta, aquí es donde inicializarías ese componente.
+    // Por ejemplo:
+    // $(fechaInput).datepicker();
+  });
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>

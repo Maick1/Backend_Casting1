@@ -41,24 +41,23 @@
 
 </head>
 <body>
-<!-- ESTILOS BOOTSTRAP, NAVBAR, CABECERA -->
-<div class="barra">
-    <img src="static/imgweb/casting.png" th:src="@{/imgweb/menu.png}"/>
-
-    <br>
-    <br>
-    <br>
-    <ul>
-        <li><a th:href="@{/}"><i class="fas fa-home"></i><span>Inicio</span></a></li>
-        <li><a th:href="@{/about}"><i class="fas fa-info-circle"></i><span>Sobre Nosotros</span></a></li>
-        <li><a href="/new"><i class="fas fa-user-plus"></i><span>¿Quieres hacer Casting?</span></a></li>
-        <li><a th:href="@{/galeria}"><i class="fas fa-images"></i><span>Galeria</span></a></li>
-        <li><a th:href="@{/login}"><i class="fas fa-user-lock"></i><span>Login</span></a></li>
-    </ul>
-</div>
 
 <!-- Agrego un formulario para registrar un nuevo producto -->
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">Bienvenido</a>
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Volver
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
     <h1>Se Parte de Nuestra Familia</h1>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
